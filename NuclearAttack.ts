@@ -8,9 +8,9 @@ import Moved from '@civ-clone/core-unit/Rules/Moved';
 import Tile from '@civ-clone/core-world/Tile';
 import Unit from '@civ-clone/core-unit/Unit';
 
-// A nuclear weapon detonates over `to`: there's no combat, and the weapon is always used up. `Moved` is processed first,
-//  as an attack does, so a ruleset's rules for an attack (a peace treaty broken, contact made) run before the
-//  `Detonated` rules, which decide what the detonation does.
+// A nuclear weapon detonates over `to`: there's no combat, and the weapon is always used up. The `Detonated` rules
+//  decide what the detonation does. `Moved` is processed afterwards, as an attack does once the fight is over, so a
+//  ruleset's rules for an attack (a peace treaty broken, contact made) see what's left rather than units about to go.
 export class NuclearAttack extends Action {
   constructor(
     from: Tile,
@@ -24,9 +24,9 @@ export class NuclearAttack extends Action {
   perform(): void {
     const unit = this.unit();
 
-    this.ruleRegistry().process(Moved, unit, this);
-
     this.ruleRegistry().process(Detonated, unit, this.to(), this);
+
+    this.ruleRegistry().process(Moved, unit, this);
 
     if (!unit.destroyed()) {
       unit.destroy(unit.player());

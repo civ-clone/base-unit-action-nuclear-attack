@@ -38,7 +38,7 @@ describe('NuclearAttack', (): void => {
       };
     };
 
-  it('processes `Moved`, then `Detonated` over the target, then destroys the unit', (): void => {
+  it('processes `Detonated` over the target, then `Moved`, then destroys the unit', (): void => {
     const { calls, ruleRegistry, unit } = setUp(),
       action = new NuclearAttack(from, to, unit, ruleRegistry);
 
@@ -57,7 +57,7 @@ describe('NuclearAttack', (): void => {
 
     action.perform();
 
-    expect(calls).to.deep.equal(['Moved', 'Detonated', 'Destroyed']);
+    expect(calls).to.deep.equal(['Detonated', 'Moved', 'Destroyed']);
     expect(unit.destroyed()).to.true;
   });
 
