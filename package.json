@@ -1,0 +1,38 @@
+{
+  "name": "@civ-clone/base-unit-action-nuclear-attack",
+  "version": "0.1.0",
+  "description": "The NuclearAttack unit action: a nuclear weapon detonates over its target, with the effects left to the ruleset's Detonated rules.",
+  "repository": "git@github.com:civ-clone/base-unit-action-nuclear-attack.git",
+  "keywords": [
+    "typescript",
+    "civilization"
+  ],
+  "author": "dom111 <dom111@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "npm run ts:compile && npm run prettier:format",
+    "prettier:check": "prettier --config .prettierrc --check '**/*.ts'",
+    "prettier:format": "prettier --config .prettierrc '**/*.ts' --write",
+    "test": "ts-mocha ./tests/*.test.ts",
+    "ts:compile": "tsc --build tsconfig.json"
+  },
+  "devDependencies": {
+    "@civ-clone/core-terrain": "^0.1.0",
+    "@civ-clone/core-world-generator": "^0.1.0",
+    "@types/chai": "^4.0.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^16.0.0",
+    "chai": "^4.0.0",
+    "mocha": "^10.0.0",
+    "prettier": "^2.8.8",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {
+    "@civ-clone/core-player": "^0.1.10",
+    "@civ-clone/core-rule": "^0.1.6",
+    "@civ-clone/core-unit": "^0.1.27",
+    "@civ-clone/core-world": "^0.1.18"
+  }
+}
